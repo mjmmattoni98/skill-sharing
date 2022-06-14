@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Update collaboration</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="titulo-seccion-back">
+        <a href="#" onClick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-nut-fill" viewBox="0 0 16 16" >
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+        </a>
+        <h2>Update collaboration</h2>
+    </div>
+    <form class="formulario form-horizontal" action="#" th:action="@{/collaboration/update}" th:object="${collaboration}" method="post">
+        <section class="input-group input-group-sm mb-3" hidden>
+            <span class="input-group-text">ID offer:</span>
+            <input type="text" class="form-control" id="idOffer" th:field="*{idOffer}" readonly/>
+        </section>
+
+        <section class="input-group input-group-sm mb-3">
+            <span class="input-group-text">Skill:</span>
+            <input type="text" class="form-control" id="skill" th:field="*{skill}" readonly/>
+        </section>
+
+        <section class="input-group input-group-sm mb-3" hidden>
+            <span class="input-group-text">Student offer:</span>
+            <input type="text" class="form-control" id="studentOffer" th:field="*{studentOffer}" readonly/>
+        </section>
+
+        <section class="input-group input-group-sm mb-3" hidden>
+            <span class="input-group-text">ID request:</span>
+            <input type="text" class="form-control" id="idRequest" th:field="*{idRequest}" readonly/>
+        </section>
+
+        <section class="input-group input-group-sm mb-3">
+            <span class="input-group-text">Student request:</span>
+            <input type="text" class="form-control" id="studentRequest" th:field="*{studentRequest}" readonly/>
+        </section>
+
+        <section class="input-group input-group-sm mb-3">
+            <span class="input-group-text">Hours:</span>
+            <input type="number" class="form-control" id="hours" th:field="*{hours}"/>
+        </section>
+
+        <section class="input-group input-group-sm mb-3">
+            <span class="input-group-text">Assessment score:</span>
+            <input type="number" class="form-control" th:min="1" th:max="5" min="1" max="5" id="assessment" th:field="*{assessment}"/>
+        </section>
+        <p class="error" th:if="${#fields.hasErrors('assessment')}" th:errors="*{assessment}"></p>
+
+        <section class="input-group input-group-sm mb-3">
+            <span class="input-group-text">Collaboration's state:</span>
+            <select class="form-select" aria-label="Default select example" th:type="text" id="state" th:field="*{state}">
+                <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
+            </select>
+        </section>
+        <p class="error" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></p>
+
+        <section class="section-btn-login">
+            <button type="submit" class="btn btn-UJI">Update collaboration</button>
+        </section>
+    </form>
+</div>
+</body>
+</html>

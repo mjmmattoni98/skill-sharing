@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+  <title>Add a new student account</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="titulo-seccion-back">
+    <a href="#" onClick="history.back()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-nut-fill" viewBox="0 0 16 16" >
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+      </svg>
+    </a>
+    <h2>Register your information</h2>
+  </div>
+  <form class="formulario form-horizontal" action="#" th:action="@{/student/add}" th:object="${student}" method="post">
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Username:</span>
+      <input type="text" class="form-control" id="username" minlength="8" th:minlength="8" maxlength="8" th:maxlength="8"  th:field="*{username}" placeholder="al******" required/>
+    </section>
+    <p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Password:</span>
+      <input type="password" class="form-control" id="password" th:field="*{password}" required/>
+    </section>
+    <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Confirm Password:</span>
+      <input type="password" class="form-control" id="confirm_password" th:field="*{confirmPassword}" required/>
+    </section>
+    <p class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Name(s):</span>
+      <input type="text" maxlength="40" class="form-control" id="name" th:field="*{name}" required/>
+    </section>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Surname(s):</span>
+      <input type="text" maxlength="40" class="form-control" th:classappend="${#fields.hasErrors('surname')} ? needcorrection" id="surname" th:field="*{surname}" required/>
+    </section>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Email:</span>
+      <input type="email" maxlength="40" th:classappend="${#fields.hasErrors('email')} ? needcorrection" class="form-control" id="email" th:field="*{email}" required/>
+    </section>
+    <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Street:</span>
+      <input type="text" maxlength="40" class="form-control" id="street" th:field="*{street}" required/>
+    </section>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Number:</span>
+      <input type="number" class="form-control" th:classappend="${#fields.hasErrors('number')} ? needcorrection" min="1" th:min="1" id="number" th:field="*{number}" required/>
+    </section>
+    <p class="error" th:if="${#fields.hasErrors('number')}" th:errors="*{email}"></p>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Postal code:</span>
+      <input type="number" class="form-control" th:classappend="${#fields.hasErrors('number')} ? needcorrection" min="1" th:min="1" id="pc" th:field="*{pc}" required/>
+    </section>
+    <p class="error" th:if="${#fields.hasErrors('pc')}" th:errors="*{pc}"></p>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Locality:</span>
+      <input type="text" maxlength="30" class="form-control" id="locality" th:field="*{locality}" required/>
+    </section>
+
+    <section class="input-group input-group-sm mb-3">
+      <span class="input-group-text">Career degree:</span>
+      <input type="text" class="form-control" id="degree" th:field="*{degree}" required/>
+    </section>
+
+    <section class="section-btn-login">
+      <button type="submit" class="btn btn-UJI">Create account</button>
+    </section>
+  </form>
+</div>
+</body>
+</html>
